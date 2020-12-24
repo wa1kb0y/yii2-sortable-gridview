@@ -5,6 +5,32 @@ namespace richardfan\sortable;
 use yii\web\AssetBundle;
 
 class SortableGridViewAsset extends AssetBundle {
+
+    public function isBs4() {
+        $bsVersion = ArrayHelper::getValue(Yii::$app->params, 'bsVersion', '3.x');
+        if ($bsVersion == '4.x') {
+            return true;
+        }
+        return false;
+    }
+
+    public function init()
+    {
+        if (parent::init()) {
+            if ($this->isBs4()) {
+                $this->depends = array_merge($this->depends, [
+                    'yii\bootstrap4\BootstrapAsset',
+                    'yii\bootstrap4\BootstrapPluginAsset',
+                ]);
+            } else {
+                $this->depends = array_merge($this->depends, [
+                    'yii\bootstrap\BootstrapAsset',
+                    'yii\bootstrap\BootstrapPluginAsset',
+                ]);
+            }
+        }
+    }
+
     public $sourcePath = '@vendor/richardfan1126/yii2-sortable-gridview/assets';
     public $baseUrl = '@web';
     public $js = [
@@ -14,7 +40,5 @@ class SortableGridViewAsset extends AssetBundle {
     public $depends = [
         'yii\web\JqueryAsset',
         'yii\jui\JuiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        'yii\bootstrap\BootstrapPluginAsset',
     ];
 }

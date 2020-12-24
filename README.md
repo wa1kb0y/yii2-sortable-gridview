@@ -120,5 +120,10 @@ use richardfan\sortable\SortableGridView;
 * **sortingPromptText**  (optional) The text shown in the model while the server is reordering model. You can use HTML tag in this attribute. Default to "Loading...".
 * **failText**  (optional) The text shown in alert box when sorting failed. Default to "Fail to sort".
 
+### Bootstrap 4 Support
+
+By default extension works with Bootstrap 3, to enable Bootstrap 4 support
+you must add `bsVersion => '4.x'` in to your app params array.
+
 ## License
 yii2-sortable-gridview is released under the MIT License. See the bundled LICENSE for details.
